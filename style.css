@@ -1,0 +1,596 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --green: #4a5e3a;
+  --green-dark: #3a4a2c;
+  --green-light: #6b7f52;
+  --cream: #faf8f5;
+  --parchment: #f5f0e8;
+  --gold: #c9a84c;
+  --text-dark: #2c2c2c;
+  --wax: #e8e0d5;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--cream);
+  font-family: "Cormorant Garamond", serif;
+  overflow-x: hidden;
+}
+
+/* ========== SCENE 1: ENVELOPE ========== */
+#scene-envelope {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--cream);
+  z-index: 100;
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+#scene-envelope.hide {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.05);
+}
+
+.youve-got-mail {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  color: var(--text-dark);
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+  animation: floatIn 1s ease both;
+}
+
+/* Envelope */
+.envelope-wrap {
+  position: relative;
+  width: min(340px, 88vw);
+  animation: floatIn 1.1s 0.2s ease both;
+  cursor: pointer;
+  filter: drop-shadow(0 20px 40px rgba(74, 94, 58, 0.25));
+}
+
+.envelope-wrap:hover {
+  transform: translateY(-4px) scale(1.01);
+  transition: transform 0.4s ease;
+}
+
+/* Flowers top-left of envelope */
+.env-flowers {
+  position: absolute;
+  top: -60px;
+  left: -30px;
+  width: 130px;
+  height: 130px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* SVG envelope */
+.envelope-svg-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 4px;
+  overflow: visible;
+}
+
+/* Flap animation */
+.env-flap {
+  transform-origin: top center;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope-wrap.opening .env-flap {
+  transform: rotateX(180deg);
+}
+
+/* From the Smiths */
+.from-text {
+  position: absolute;
+  top: 36%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  color: var(--cream);
+  white-space: nowrap;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+/* Wax seal */
+.wax-seal {
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 72px;
+  background: radial-gradient(
+    circle at 40% 35%,
+    #e8e0d5 0%,
+    #c8bdb0 60%,
+    #a89880 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.18),
+    inset 0 1px 3px rgba(255, 255, 255, 0.4);
+  z-index: 20;
+}
+
+.wax-monogram {
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--green-dark);
+  font-style: italic;
+  line-height: 1;
+}
+
+.click-to-open {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  letter-spacing: 0.25em;
+  color: var(--text-dark);
+  margin-top: 56px;
+  animation: pulse 2s 1.5s ease infinite;
+  text-transform: uppercase;
+}
+
+/* Flowers bottom right (below envelope area) */
+.bottom-flowers {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+}
+
+/* ========== SCENE 2: INVITATION ========== */
+#scene-invitation {
+  min-height: 100vh;
+  background: var(--cream);
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s 0.2s ease,
+    transform 0.8s 0.2s ease;
+  pointer-events: none;
+}
+
+#scene-invitation.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+/* Invitation card area */
+.invite-stage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 0;
+}
+
+/* The envelope (bottom part) still visible */
+.open-envelope-base {
+  position: relative;
+  width: min(340px, 88vw);
+  margin: 0 auto;
+}
+
+/* The card rising out */
+.invite-card {
+  position: relative;
+  width: min(300px, 82vw);
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+  margin: 0 auto;
+  animation: riseCard 1s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom center;
+}
+
+@keyframes riseCard {
+  from {
+    transform: translateY(60px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Lace border on card */
+.lace-border {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(180, 170, 155, 0.5);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Lace SVG pattern top and bottom */
+.lace-top,
+.lace-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18px;
+  overflow: hidden;
+  z-index: 3;
+  pointer-events: none;
+}
+.lace-top {
+  top: 0;
+}
+.lace-bottom {
+  bottom: 0;
+  transform: scaleY(-1);
+}
+
+.card-inner {
+  padding: 28px 22px 24px;
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* Card flowers top right */
+.card-flowers-tr {
+  position: absolute;
+  top: -40px;
+  right: -25px;
+  width: 110px;
+  height: 110px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Card flowers left */
+.card-flowers-l {
+  position: absolute;
+  top: 30%;
+  left: -35px;
+  width: 90px;
+  height: 120px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.save-script {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2rem, 7vw, 2.8rem);
+  color: var(--text-dark);
+  line-height: 1;
+  margin-bottom: -6px;
+}
+
+.our-date-serif {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.divider-line {
+  width: 80%;
+  height: 1px;
+  background: var(--text-dark);
+  margin: 6px auto;
+}
+
+.big-date {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--text-dark);
+  margin: 10px 0;
+}
+
+.names-script {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  color: var(--text-dark);
+  margin: 6px 0;
+}
+
+.card-divider-ornament {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin: 4px 0;
+  letter-spacing: 4px;
+}
+
+/* Photo + Vinyl area */
+.photo-vinyl-wrap {
+  position: relative;
+  margin: 12px auto 0;
+  width: 90%;
+  height: 140px;
+}
+
+.couple-photo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 65%;
+  height: 100%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Vinyl record player */
+.vinyl-wrap {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.vinyl-disc {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      #1a1a1a 0%,
+      #1a1a1a 18%,
+      transparent 18%
+    ),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      #111 0px,
+      #222 1px,
+      #111 2px,
+      #1a1a1a 3px
+    );
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  animation: spinVinyl 3s linear infinite paused;
+  position: relative;
+}
+
+.vinyl-disc.playing {
+  animation-play-state: running;
+}
+
+@keyframes spinVinyl {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vinyl-label {
+  position: absolute;
+  inset: 28%;
+  background: radial-gradient(
+    circle,
+    var(--green-light) 0%,
+    var(--green-dark) 100%
+  );
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.play-icon {
+  color: white;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.vinyl-text-ring {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.vinyl-curved-text {
+  font-family: "Cinzel", serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.18em;
+  fill: white;
+}
+
+/* ========== SECTION BELOW CARD ========== */
+.big-date-section {
+  text-align: center;
+  padding: 50px 20px 0;
+}
+
+.big-italic-date {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(3.5rem, 14vw, 6rem);
+  color: var(--text-dark);
+  line-height: 1.1;
+  opacity: 0.15;
+  letter-spacing: -0.02em;
+}
+
+.venue-text {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.1rem, 4.5vw, 1.6rem);
+  letter-spacing: 0.15em;
+  color: var(--text-dark);
+  text-transform: uppercase;
+  margin-top: -10px;
+  font-weight: 400;
+}
+
+/* ========== SCROLL SECTION ========== */
+.scroll-section {
+  padding: 50px 30px 80px;
+  text-align: center;
+}
+
+.section-label {
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(2rem, 7vw, 3rem);
+  color: var(--green-dark);
+  margin-bottom: 14px;
+}
+
+.section-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--green);
+  margin: 0 auto 16px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 340px;
+  margin: 0 auto 40px;
+}
+
+.detail-item {
+  text-align: center;
+}
+
+.detail-label {
+  font-family: "Cinzel", serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.detail-value {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+/* RSVP button */
+.rsvp-btn {
+  display: inline-block;
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  color: white;
+  background: var(--green);
+  border: none;
+  padding: 14px 36px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition:
+    background 0.3s,
+    transform 0.2s;
+  text-decoration: none;
+}
+
+.rsvp-btn:hover {
+  background: var(--green-dark);
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.footer-band {
+  background: var(--green-dark);
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  padding: 20px;
+  font-family: "Cinzel", serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Flowers SVG components */
+.flower-svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Envelope open transition overlay */
+#open-transition {
+  position: fixed;
+  inset: 0;
+  background: white;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 200;
+  transition: opacity 0.4s ease;
+}
+#open-transition.flash {
+  opacity: 1;
+}

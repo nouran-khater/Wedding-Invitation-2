@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Invitation 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Flash transition overlay -->
+<div id="open-transition"></div>
+
+<!-- ===== SCENE 1: ENVELOPE ===== -->
+<div id="scene-envelope">
+  <div class="youve-got-mail">You've Got Mail!</div>
+
+  <div class="envelope-wrap" id="envelopeWrap" onclick="openEnvelope()">
+
+    <!-- Floral bouquet top-left -->
+    <div class="env-flowers">
+      <svg class="flower-svg" viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+        <!-- Stems & leaves -->
+        <path d="M65 120 Q50 90 30 70 Q20 60 25 45" stroke="#6b7f52" stroke-width="2" fill="none"/>
+        <path d="M65 120 Q75 85 90 65 Q100 50 92 38" stroke="#6b7f52" stroke-width="1.5" fill="none"/>
+        <path d="M65 100 Q45 75 35 55" stroke="#6b7f52" stroke-width="1.5" fill="none"/>
+        <!-- Leaves -->
+        <ellipse cx="30" cy="67" rx="10" ry="5" fill="#7a9060" transform="rotate(-45 30 67)"/>
+        <ellipse cx="90" cy="62" rx="10" ry="5" fill="#7a9060" transform="rotate(40 90 62)"/>
+        <ellipse cx="40" cy="52" rx="9" ry="4" fill="#8fa870" transform="rotate(-30 40 52)"/>
+        <!-- White flowers -->
+        <!-- Flower 1 -->
+        <g transform="translate(28,42)">
+          <circle cx="0" cy="-8" r="5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="7" cy="-4" r="5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="7" cy="4" r="5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="0" cy="8" r="5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="-7" cy="4" r="5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="-7" cy="-4" r="5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="0" cy="0" r="4" fill="#f0e8d0"/>
+        </g>
+        <!-- Flower 2 -->
+        <g transform="translate(62,22)">
+          <circle cx="0" cy="-7" r="4.5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="6" cy="-3.5" r="4.5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="6" cy="3.5" r="4.5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="0" cy="7" r="4.5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="-6" cy="3.5" r="4.5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="-6" cy="-3.5" r="4.5" fill="white" stroke="#ddd" stroke-width="0.5"/>
+          <circle cx="0" cy="0" r="3.5" fill="#f0e8d0"/>
+        </g>
+        <!-- Flower 3 small -->
+        <g transform="translate(88,38)">
+          <circle cx="0" cy="-6" r="4" fill="white" stroke="#eee" stroke-width="0.5"/>
+          <circle cx="5" cy="-3" r="4" fill="white" stroke="#eee" stroke-width="0.5"/>
+          <circle cx="5" cy="3" r="4" fill="white" stroke="#eee" stroke-width="0.5"/>
+          <circle cx="0" cy="6" r="4" fill="white" stroke="#eee" stroke-width="0.5"/>
+          <circle cx="-5" cy="3" r="4" fill="white" stroke="#eee" stroke-width="0.5"/>
+          <circle cx="-5" cy="-3" r="4" fill="white" stroke="#eee" stroke-width="0.5"/>
+          <circle cx="0" cy="0" r="3" fill="#f5ead8"/>
+        </g>
+        <!-- Small buds -->
+        <ellipse cx="50" cy="15" rx="4" ry="6" fill="white" stroke="#eee" stroke-width="0.5" transform="rotate(-20 50 15)"/>
+        <ellipse cx="75" cy="12" rx="3" ry="5" fill="#f0ece5" stroke="#ddd" stroke-width="0.5" transform="rotate(15 75 12)"/>
+        <!-- Trailing ribbon -->
+        <path d="M65 125 Q60 110 50 105 Q40 100 45 90" stroke="white" stroke-width="2" fill="none" opacity="0.7"/>
+        <path d="M65 125 Q70 112 78 108" stroke="white" stroke-width="1.5" fill="none" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Envelope SVG -->
+    <div class="envelope-svg-wrap">
+      <svg viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+        <!-- Envelope body -->
+        <rect x="0" y="40" width="340" height="180" rx="4" fill="#4a5e3a"/>
+        <!-- Back triangular flap (always shown) -->
+        <polygon points="0,220 170,130 340,220" fill="#3a4a2c"/>
+        <!-- Left side triangle -->
+        <polygon points="0,40 0,220 130,140" fill="#3e5230"/>
+        <!-- Right side triangle -->
+        <polygon points="340,40 340,220 210,140" fill="#3e5230"/>
+        <!-- Front flap (animatable) - shown closed initially -->
+        <polygon class="env-flap" points="0,40 170,130 340,40" fill="#56703f"/>
+        <!-- Envelope edge highlights -->
+        <line x1="0" y1="40" x2="170" y2="130" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+        <line x1="340" y1="40" x2="170" y2="130" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+      </svg>
+
+      <!-- From the Smiths text on envelope body -->
+      <div class="from-text" id="fromText">From the Smiths</div>
+
+      <!-- Wax seal -->
+      <div class="wax-seal">
+        <span class="wax-monogram">H</span>
+      </div>
+    </div>
+
+    <!-- Bottom flowers -->
+    <div class="bottom-flowers">
+      <svg class="flower-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 90 Q30 60 50 40 Q60 28 75 20" stroke="#6b7f52" stroke-width="1.5" fill="none"/>
+        <ellipse cx="50" cy="35" rx="8" ry="4" fill="#7a9060" transform="rotate(30 50 35)"/>
+        <g transform="translate(75,18)">
+          <circle cx="0" cy="-6" r="4.5" fill="white"/>
+          <circle cx="5.5" cy="-3" r="4.5" fill="white"/>
+          <circle cx="5.5" cy="3" r="4.5" fill="white"/>
+          <circle cx="0" cy="6" r="4.5" fill="white"/>
+          <circle cx="-5.5" cy="3" r="4.5" fill="white"/>
+          <circle cx="-5.5" cy="-3" r="4.5" fill="white"/>
+          <circle cx="0" cy="0" r="3.5" fill="#f0e8d0"/>
+        </g>
+        <g transform="translate(45,20)">
+          <circle cx="0" cy="-5" r="4" fill="white"/>
+          <circle cx="4.5" cy="-2.5" r="4" fill="white"/>
+          <circle cx="4.5" cy="2.5" r="4" fill="white"/>
+          <circle cx="0" cy="5" r="4" fill="white"/>
+          <circle cx="-4.5" cy="2.5" r="4" fill="white"/>
+          <circle cx="-4.5" cy="-2.5" r="4" fill="white"/>
+          <circle cx="0" cy="0" r="3" fill="#f5ead8"/>
+        </g>
+      </svg>
+    </div>
+
+  </div>
+
+  <div class="click-to-open">✦ Click to Open ✦</div>
+</div>
+
+<!-- ===== SCENE 2: INVITATION ===== -->
+<div id="scene-invitation">
+
+  <div class="invite-stage">
+    <!-- Open envelope base -->
+    <div class="open-envelope-base">
+
+      <!-- The card sitting in envelope -->
+      <div class="invite-card">
+
+        <!-- Lace border decoration -->
+        <svg style="position:absolute;top:0;left:0;right:0;width:100%;height:18px;z-index:3;" viewBox="0 0 300 18" preserveAspectRatio="none">
+          <path d="M0,18 Q7.5,0 15,18 Q22.5,0 30,18 Q37.5,0 45,18 Q52.5,0 60,18 Q67.5,0 75,18 Q82.5,0 90,18 Q97.5,0 105,18 Q112.5,0 120,18 Q127.5,0 135,18 Q142.5,0 150,18 Q157.5,0 165,18 Q172.5,0 180,18 Q187.5,0 195,18 Q202.5,0 210,18 Q217.5,0 225,18 Q232.5,0 240,18 Q247.5,0 255,18 Q262.5,0 270,18 Q277.5,0 285,18 Q292.5,0 300,18" fill="rgba(200,190,175,0.3)" stroke="rgba(180,170,155,0.5)" stroke-width="0.5"/>
+        </svg>
+
+        <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;height:18px;z-index:3;transform:scaleY(-1);" viewBox="0 0 300 18" preserveAspectRatio="none">
+          <path d="M0,18 Q7.5,0 15,18 Q22.5,0 30,18 Q37.5,0 45,18 Q52.5,0 60,18 Q67.5,0 75,18 Q82.5,0 90,18 Q97.5,0 105,18 Q112.5,0 120,18 Q127.5,0 135,18 Q142.5,0 150,18 Q157.5,0 165,18 Q172.5,0 180,18 Q187.5,0 195,18 Q202.5,0 210,18 Q217.5,0 225,18 Q232.5,0 240,18 Q247.5,0 255,18 Q262.5,0 270,18 Q277.5,0 285,18 Q292.5,0 300,18" fill="rgba(200,190,175,0.3)" stroke="rgba(180,170,155,0.5)" stroke-width="0.5"/>
+        </svg>
+
+        <!-- Inner border line -->
+        <div style="position:absolute;inset:18px;border:1px solid rgba(160,145,130,0.3);pointer-events:none;z-index:2;"></div>
+
+        <!-- Card flowers top right -->
+        <div class="card-flowers-tr">
+          <svg class="flower-svg" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 100 Q35 70 60 45 Q75 30 90 15" stroke="#6b7f52" stroke-width="1.5" fill="none"/>
+            <path d="M40 90 Q50 65 70 50" stroke="#6b7f52" stroke-width="1.2" fill="none"/>
+            <ellipse cx="58" cy="38" rx="9" ry="4" fill="#7a9060" transform="rotate(-40 58 38)"/>
+            <g transform="translate(88,18)">
+              <circle cx="0" cy="-7" r="5" fill="white" stroke="#e8e0d5" stroke-width="0.5"/>
+              <circle cx="6" cy="-3.5" r="5" fill="white" stroke="#e8e0d5" stroke-width="0.5"/>
+              <circle cx="6" cy="3.5" r="5" fill="white" stroke="#e8e0d5" stroke-width="0.5"/>
+              <circle cx="0" cy="7" r="5" fill="white" stroke="#e8e0d5" stroke-width="0.5"/>
+              <circle cx="-6" cy="3.5" r="5" fill="white" stroke="#e8e0d5" stroke-width="0.5"/>
+              <circle cx="-6" cy="-3.5" r="5" fill="white" stroke="#e8e0d5" stroke-width="0.5"/>
+              <circle cx="0" cy="0" r="4" fill="#f5ead8"/>
+            </g>
+            <g transform="translate(60,42)">
+              <circle cx="0" cy="-5.5" r="4" fill="white"/>
+              <circle cx="5.5" cy="-2.5" r="4" fill="white"/>
+              <circle cx="5.5" cy="2.5" r="4" fill="white"/>
+              <circle cx="0" cy="5.5" r="4" fill="white"/>
+              <circle cx="-5.5" cy="2.5" r="4" fill="white"/>
+              <circle cx="-5.5" cy="-2.5" r="4" fill="white"/>
+              <circle cx="0" cy="0" r="3" fill="#f0e8d0"/>
+            </g>
+            <ellipse cx="75" cy="25" rx="4" ry="6" fill="white" stroke="#eee" stroke-width="0.5" transform="rotate(25 75 25)"/>
+          </svg>
+        </div>
+
+        <!-- Card flowers left -->
+        <div class="card-flowers-l">
+          <svg class="flower-svg" viewBox="0 0 90 120" xmlns="http://www.w3.org/2000/svg">
+            <path d="M80 10 Q60 35 55 60 Q50 80 60 110" stroke="#6b7f52" stroke-width="1.5" fill="none"/>
+            <path d="M80 30 Q65 50 65 75" stroke="#6b7f52" stroke-width="1.2" fill="none"/>
+            <ellipse cx="57" cy="55" rx="8" ry="4" fill="#7a9060" transform="rotate(20 57 55)"/>
+            <g transform="translate(78,12)">
+              <circle cx="0" cy="-6" r="4.5" fill="white"/>
+              <circle cx="5.5" cy="-3" r="4.5" fill="white"/>
+              <circle cx="5.5" cy="3" r="4.5" fill="white"/>
+              <circle cx="0" cy="6" r="4.5" fill="white"/>
+              <circle cx="-5.5" cy="3" r="4.5" fill="white"/>
+              <circle cx="-5.5" cy="-3" r="4.5" fill="white"/>
+              <circle cx="0" cy="0" r="3.5" fill="#f5ead8"/>
+            </g>
+            <g transform="translate(66,72)">
+              <circle cx="0" cy="-5" r="4" fill="white"/>
+              <circle cx="5" cy="-2.5" r="4" fill="white"/>
+              <circle cx="5" cy="2.5" r="4" fill="white"/>
+              <circle cx="0" cy="5" r="4" fill="white"/>
+              <circle cx="-5" cy="2.5" r="4" fill="white"/>
+              <circle cx="-5" cy="-2.5" r="4" fill="white"/>
+              <circle cx="0" cy="0" r="3" fill="#f0e8d0"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="card-inner">
+          <div class="save-script">Save our</div>
+          <div class="our-date-serif">Date</div>
+          <div class="divider-line"></div>
+          <div class="big-date">28 June 2026</div>
+          <div class="card-divider-ornament">✦ ✦ ✦</div>
+          <div class="names-script">Georgie &amp; Hermione</div>
+
+          <!-- Photo + Vinyl -->
+          <div class="photo-vinyl-wrap">
+            <!-- Couple photo placeholder (elegant gradient) -->
+            <div class="couple-photo" style="background: linear-gradient(135deg, #4a5e3a 0%, #2c3a1e 40%, #1a2410 70%, #4a5e3a 100%); display:flex; align-items:center; justify-content:center;">
+              <div style="text-align:center; color:rgba(255,255,255,0.7); padding:10px;">
+                <div style="font-family:'Great Vibes',cursive;font-size:1.4rem;color:white;">G &amp; H</div>
+                <div style="font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.15em;color:rgba(255,255,255,0.6);margin-top:4px;">WEDDING PHOTO</div>
+              </div>
+            </div>
+
+            <!-- Vinyl record -->
+            <div class="vinyl-wrap" id="vinylWrap" onclick="toggleMusic()">
+              <div class="vinyl-disc" id="vinylDisc">
+                <div class="vinyl-label">
+                  <span class="play-icon" id="playIcon">▶</span>
+                </div>
+              </div>
+              <!-- Circular text -->
+              <svg style="position:absolute;inset:-12px;width:calc(100% + 24px);height:calc(100% + 24px);pointer-events:none;" viewBox="0 0 124 124">
+                <path id="circlePath" d="M62,62 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" fill="none"/>
+                <text>
+                  <textPath href="#circlePath" startOffset="0%">
+                    <tspan class="vinyl-curved-text">CLICK TO LISTEN · CLICK TO LISTEN · </tspan>
+                  </textPath>
+                </text>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Open envelope base (green) -->
+      <svg viewBox="0 0 340 120" xmlns="http://www.w3.org/2000/svg" style="width:min(340px,88vw);display:block;margin:0 auto;margin-top:-4px;">
+        <rect x="0" y="0" width="340" height="120" rx="0 0 4 4" fill="#4a5e3a"/>
+        <polygon points="0,120 170,60 340,120" fill="#3a4a2c"/>
+        <polygon points="0,0 0,120 130,60" fill="#3e5230"/>
+        <polygon points="340,0 340,120 210,60" fill="#3e5230"/>
+        <!-- Wax seal on envelope front -->
+        <circle cx="170" cy="52" r="28" fill="radial-gradient(circle at 40% 35%, #e8e0d5 0%, #c8bdb0 100%)" stroke="#c0b0a0" stroke-width="1"/>
+        <circle cx="170" cy="52" r="28" fill="#e0d8cc"/>
+        <text x="170" y="59" text-anchor="middle" font-family="Cinzel, serif" font-size="16" fill="#3a4a2c" font-weight="600" font-style="italic">H</text>
+      </svg>
+
+      <!-- Floral spray bottom right of invite area -->
+      <div style="position:absolute;bottom:-15px;right:10px;width:80px;height:80px;">
+        <svg class="flower-svg" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 70 Q25 50 45 30 Q55 18 65 10" stroke="#6b7f52" stroke-width="1.2" fill="none"/>
+          <ellipse cx="44" cy="28" rx="7" ry="3.5" fill="#7a9060" transform="rotate(-40 44 28)"/>
+          <g transform="translate(63,12)">
+            <circle cx="0" cy="-5.5" r="4" fill="white"/>
+            <circle cx="5" cy="-2.5" r="4" fill="white"/>
+            <circle cx="5" cy="2.5" r="4" fill="white"/>
+            <circle cx="0" cy="5.5" r="4" fill="white"/>
+            <circle cx="-5" cy="2.5" r="4" fill="white"/>
+            <circle cx="-5" cy="-2.5" r="4" fill="white"/>
+            <circle cx="0" cy="0" r="3" fill="#f5ead8"/>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Big date section -->
+  <div class="big-date-section reveal">
+    <div class="big-italic-date">28. 06. 2026</div>
+    <div class="venue-text">West Garden Venue</div>
+  </div>
+
+  <!-- Details section -->
+  <div class="scroll-section">
+    <div class="section-label reveal">Details</div>
+    <div class="section-divider"></div>
+
+    <div class="details-grid">
+      <div class="detail-item reveal">
+        <div class="detail-label">Date</div>
+        <div class="detail-value">28 June 2026</div>
+      </div>
+      <div class="detail-item reveal">
+        <div class="detail-label">Time</div>
+        <div class="detail-value">4:00 PM</div>
+      </div>
+      <div class="detail-item reveal">
+        <div class="detail-label">Venue</div>
+        <div class="detail-value">West Garden</div>
+      </div>
+      <div class="detail-item reveal">
+        <div class="detail-label">Dress Code</div>
+        <div class="detail-value">Garden Formal</div>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div style="width:80px;height:1px;background:var(--green);margin:0 auto 30px;opacity:0.4;"></div>
+
+    <div class="section-label reveal" style="font-size:clamp(1.5rem,5vw,2.2rem);color:var(--text-dark);margin-bottom:20px;">
+      Kindly RSVP
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:#666;margin-bottom:24px;font-style:italic;" class="reveal">
+      Please respond by 1 June 2026
+    </p>
+    <a href="#" class="rsvp-btn reveal">RSVP Here</a>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-band">
+    GEORGIE &amp; HERMIONE · 28 JUNE 2026 · WEST GARDEN VENUE
+  </div>
+
+</div>
+
+<audio id="weddingAudio" loop>
+  <!-- No src: plays silence; in real use add: src="your-song.mp3" -->
+</audio>
+
+<script src="script.js"></script>
+</body>
+</html>
